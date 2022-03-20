@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  stock:
+    image: stock:0.1.0
+    env_file:
+      - .env
+    build: 
+      context: .
+      args:
+        INSTALL_DEV: ${INSTALL_DEV-false}
+    ports: 
+      - 6060:80    
