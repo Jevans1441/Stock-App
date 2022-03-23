@@ -3,17 +3,17 @@ const { API_KEY } = process.env;
 
 import { GET_HOME } from "./actionTypes";
 
-export const getHome = () => (dispatch) => {
+export const homeData = () => (dispatch) => {
   fetch(
-    `https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2020-06-01/2020-06-17?apiKey=${API_KEY}`
+    "https://finnhub.io/api/v1/stock/profile2?symbol=AAPL&token=c8t6knqad3ib2st16ko0"
   )
     .then((data) => data.json())
     .then((response) => {
-      dispatch(fetchData(response));
+      dispatch(getHomeData(response));
     });
 };
 
-const fetchData = (data) => {
+const getHomeData = (data) => {
   return {
     type: GET_HOME,
     data,
