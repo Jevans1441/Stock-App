@@ -23,3 +23,12 @@ RUN bash -c "if [ $INSTALL_JUPYTER == 'true' ] ; then pip install jupyterlab ; f
 
 COPY ./app_src /app
 ENV PYTHONPATH=/app
+
+# crete the app user
+RUN adduser --system --group app
+
+# Chown all the files to the app user
+RUN chown -R app:app /app/
+
+# Change user to app user
+USER app
