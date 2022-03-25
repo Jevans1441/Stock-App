@@ -13,9 +13,9 @@ const Home = () => {
     socket.send(
       JSON.stringify({ type: "subscribe", symbol: "BINANCE:BTCUSDT" })
     );
-    // socket.send(
-    //   JSON.stringify({ type: "subscribe", symbol: "BINANCE:ETHUSDT" })
-    // );
+    socket.send(
+      JSON.stringify({ type: "subscribe", symbol: "BINANCE:ETHUSDT" })
+    );
     // socket.send(JSON.stringify({ type: "subscribe", symbol: "IC MARKETS:1" }));
   });
 
@@ -23,7 +23,7 @@ const Home = () => {
   socket.addEventListener("message", function (event) {
     let stockObject = JSON.parse(event.data);
     let stockData = stockObject.data;
-    console.log("Message from server ", stockData);
+    console.log("Message from server ", data[0]);
     setData(stockData);
   });
 
@@ -36,8 +36,8 @@ const Home = () => {
     <>
       {data.map((stock, index) => (
         <div className="container" key={index}>
-          <div>Company {stock[0].s}</div>
-          <div>Price {stock[0].p}</div>
+          <div>Company {stock.s}</div>
+          <div>Price {stock.p}</div>
         </div>
       ))}
     </>
