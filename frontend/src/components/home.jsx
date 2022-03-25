@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import throttle from "lodash.throttle";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   const socket = new WebSocket(
     "wss://ws.finnhub.io?token=c8t6knqad3ib2st16ko0"
@@ -22,8 +22,8 @@ const Home = () => {
   // Listen for messages
   socket.addEventListener("message", function (event) {
     let stockObject = JSON.parse(event.data);
-    let stockData = stockObject.data;
-    console.log("Message from server ", data[0]);
+    let stockData = stockObject.data[0];
+//     console.log("Message from server ", data);
     setData(stockData);
   });
 
@@ -34,12 +34,12 @@ const Home = () => {
 
   return (
     <>
-      {data.map((stock, index) => (
+//       {data.map((stock, index) => (
         <div className="container" key={index}>
-          <div>Company {stock.s}</div>
-          <div>Price {stock.p}</div>
+          <div>Company {data.s}</div>
+          <div>Price {data.p}</div>
         </div>
-      ))}
+//       ))}
     </>
   );
 };
