@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 const Home = () => {
   const [uniqueData, setUniqueData] = useState();
 
+  // Sort for Unique name
   const findUnique = (arr = []) => {
     const uniqueId = [];
 
@@ -36,7 +37,7 @@ const Home = () => {
         <>
           <div key={index}>
             <div>
-              {stockSymbol.s} {stockSymbol.p}
+              {stockSymbol.s} - {stockSymbol.p}
             </div>
           </div>
         </>
@@ -51,24 +52,26 @@ const Home = () => {
   );
 
   // Connection opened -> Subscribe
-  socket.addEventListener("open", function (event) {
+  const throttled1 = throttle(function (event) {
     socket.send(
       JSON.stringify({ type: "subscribe", symbol: "BINANCE:BTCUSDT" })
     );
     socket.send(
       JSON.stringify({ type: "subscribe", symbol: "BINANCE:ETHUSDT" })
     );
-    // socket.send(JSON.stringify({ type: 'subscribe', symbol: 'IC MARKETS:1' }));
   });
 
-  // Listen for messages
-  socket.addEventListener("message", function (event) {
+  const throttled2 = throttle(function (event) {
     let stockObject = JSON.parse(event.data);
-    // console.log('Message from server ', wsData);
-    // setWSData(stockObject);
     const unique = stockObject ? findUnique(stockObject.data) : [];
     handleSetUnique(unique);
-  });
+  }, 10000);
+
+  // open socket for data
+  socket.addEventListener("open", throttled1);
+
+  // listen for messages
+  socket.addEventListener("message", throttled2);
 
   // Unsubscribe
   const unsubscribe = function (symbol) {
