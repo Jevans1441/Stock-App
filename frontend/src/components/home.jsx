@@ -1,11 +1,53 @@
 import { useState, useEffect } from "react";
+import * as React from "react";
 import throttle from "lodash.throttle";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const Home = () => {
-  const [data, setData] = useState({});
+  const [uniqueData, setUniqueData] = useState();
+
+  const findUnique = (arr = []) => {
+    const uniqueId = [];
+
+    const unique = arr.filter((element) => {
+      const isDuplicate = uniqueId.includes(element.s);
+
+      if (!isDuplicate) {
+        uniqueId.push(element.s);
+
+        return true;
+      }
+    });
+
+    return unique;
+  };
+
+  const handleSetUnique = (unique) => {
+    console.log("helloX", unique);
+    setUniqueData(unique);
+  };
+
+  const stockSymbols = uniqueData ? (
+    uniqueData.map((stockSymbol, index) => {
+      return (
+        <>
+          <div key={index}>
+            <div>
+              {stockSymbol.s} {stockSymbol.p}
+            </div>
+          </div>
+        </>
+      );
+    })
+  ) : (
+    <p>hello</p>
+  );
 
   const socket = new WebSocket(
-    "wss://ws.finnhub.io?token=c8t6knqad3ib2st16ko0"
+    "wss://ws.finnhub.io?token=c8vhqk2ad3icdhue9vd0"
   );
 
   // Connection opened -> Subscribe
@@ -16,30 +58,34 @@ const Home = () => {
     socket.send(
       JSON.stringify({ type: "subscribe", symbol: "BINANCE:ETHUSDT" })
     );
-    // socket.send(JSON.stringify({ type: "subscribe", symbol: "IC MARKETS:1" }));
+    // socket.send(JSON.stringify({ type: 'subscribe', symbol: 'IC MARKETS:1' }));
   });
 
   // Listen for messages
   socket.addEventListener("message", function (event) {
     let stockObject = JSON.parse(event.data);
-    let stockData = stockObject.data[0];
-//     console.log("Message from server ", data);
-    setData(stockData);
+    // console.log('Message from server ', wsData);
+    // setWSData(stockObject);
+    const unique = stockObject ? findUnique(stockObject.data) : [];
+    handleSetUnique(unique);
   });
 
   // Unsubscribe
-  var unsubscribe = function (symbol) {
+  const unsubscribe = function (symbol) {
     socket.send(JSON.stringify({ type: "unsubscribe", symbol: symbol }));
   };
 
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   return (
     <>
-//       {data.map((stock, index) => (
-        <div className="container" key={index}>
-          <div>Company {data.s}</div>
-          <div>Price {data.p}</div>
-        </div>
-//       ))}
+      <div>{stockSymbols}</div>
     </>
   );
 };
