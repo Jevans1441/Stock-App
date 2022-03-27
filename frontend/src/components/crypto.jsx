@@ -1,8 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// material-ui
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import { WrapText } from "@mui/icons-material";
+
 const Crypto = () => {
   const [cryptoData, setCryptoData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getCrypto();
@@ -38,19 +48,58 @@ const Crypto = () => {
       .request(getData)
       .then(function (response) {
         setCryptoData(response.data);
+        setLoading(true);
       })
       .catch(function (error) {
         console.error(error);
       });
   };
 
-  console.log(cryptoData[0]);
+  console.log(cryptoData);
 
   return (
     <>
-      <div>{cryptoData[0].id}</div>
-      <div></div>
-      <div></div>
+      <div className="crypto-container">
+        {loading &&
+          cryptoData.map((crypto, index) => (
+            <Card
+              sx={{ width: 250 }}
+              key={index}
+              style={{
+                margin: "8px",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+              }}
+            >
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="60vh"
+                  image={crypto.image}
+                  alt={crypto.name}
+                  width="auto"
+                />
+                <Typography gutterBottom variant="h5" component="div">
+                  {crypto.name}
+                </Typography>
+                <CardContent>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    Current Price - ${crypto.current_price}
+                    <br />
+                    All Time High - ${crypto.ath}
+                    <br />
+                    High over 24h - ${crypto.high_24h}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
+      </div>
     </>
   );
 };

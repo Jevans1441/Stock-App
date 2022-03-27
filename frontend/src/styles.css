@@ -17,3 +17,13 @@
     width: 300px !important;
     margin: auto;
 }
+
+.crypto-container {
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
