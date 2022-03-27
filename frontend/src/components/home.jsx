@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 const Home = () => {
-  const [uniqueData, setUniqueData] = useState();
+  const [uniqueData, setUniqueData] = useState([]);
 
   // Sort for Unique name
   const findUnique = (arr = []) => {
@@ -28,7 +28,19 @@ const Home = () => {
 
   const handleSetUnique = (unique) => {
     console.log("helloX", unique);
-    setUniqueData(unique);
+
+    for (let i = 0; i < unique.length; i++) {
+      let found = false;
+      for (let j = 0; j < unique[i].length; j++) {
+        if ((unique[i].s = uniqueData[j].s))
+          setUniqueData(...uniqueData, (uniqueData[j] = unique[i]));
+        found = true;
+      }
+      if (!found) {
+        setUniqueData(...uniqueData, unique[i]);
+      }
+    }
+    // setUniqueData(unique);
   };
 
   const stockSymbols = uniqueData ? (
@@ -65,7 +77,7 @@ const Home = () => {
     let stockObject = JSON.parse(event.data);
     const unique = stockObject ? findUnique(stockObject.data) : [];
     handleSetUnique(unique);
-  }, 10000);
+  }, 10);
 
   // open socket for data
   socket.addEventListener("open", throttled1);
@@ -77,14 +89,6 @@ const Home = () => {
   const unsubscribe = function (symbol) {
     socket.send(JSON.stringify({ type: "unsubscribe", symbol: symbol }));
   };
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
   return (
     <>
