@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["Home", "Stock Search", "Blog"];
+const pages = ["Home", "Stocks", "Crypto"];
 const settings = ["Profile", "Logout"];
 
 const NavBar = () => {

@@ -29,7 +29,6 @@ const Stock = () => {
 
   const handleAPIResponse = (response) => {
     setData(response.data);
-    console.log(response.data);
   };
 
   const handleErr = (err) => {
@@ -44,10 +43,9 @@ const Stock = () => {
           flexWrap: "wrap",
           margin: "auto",
           padding: "30px",
-          justifyContent: "center",
         }}
       >
-        <CardActionArea>
+        <CardActionArea style={{ width: "40%", alignItems: "left" }}>
           <CardMedia
             component="img"
             height="60vh"

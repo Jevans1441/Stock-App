@@ -30,9 +30,7 @@ const CompanyNews = () => {
   const handleNewsResponse = (response) => {
     setHeadlineNews(response.data.majorDevelopment);
     setLoading(true);
-    console.log(headlineNews);
   };
-  console.log(headlineNews);
 
   const handleErr = (err) => {
     console.log(err);
