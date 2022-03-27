@@ -1,98 +1,83 @@
-import { useState, useEffect } from "react";
 import * as React from "react";
-import throttle from "lodash.throttle";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import WebSocketData from "./websocket";
+
+// Material UI
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const Home = () => {
-  const [uniqueData, setUniqueData] = useState([]);
+  const [marketNews, setMarketNews] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // Sort for Unique name
-  const findUnique = (arr = []) => {
-    const uniqueId = [];
+  useEffect(() => {
+    fetchMarketNews();
+  }, []);
 
-    const unique = arr.filter((element) => {
-      const isDuplicate = uniqueId.includes(element.s);
-
-      if (!isDuplicate) {
-        uniqueId.push(element.s);
-
-        return true;
-      }
-    });
-
-    return unique;
+  const fetchMarketNews = () => {
+    axios
+      .get(
+        "https://finnhub.io/api/v1/news?category=forex&minId=10&token=c8vqeaiad3icdhueemgg"
+      )
+      .then(handleAPIResponse)
+      .catch(handleErr);
   };
 
-  const handleSetUnique = (unique) => {
-    console.log("helloX", unique);
-
-    for (let i = 0; i < unique.length; i++) {
-      let found = false;
-      for (let j = 0; j < unique[i].length; j++) {
-        if ((unique[i].s = uniqueData[j].s))
-          setUniqueData(...uniqueData, (uniqueData[j] = unique[i]));
-        found = true;
-      }
-      if (!found) {
-        setUniqueData(...uniqueData, unique[i]);
-      }
-    }
-    // setUniqueData(unique);
+  const handleAPIResponse = (response) => {
+    setMarketNews(response.data);
+    setLoading(true);
   };
+  console.log(marketNews);
 
-  const stockSymbols = uniqueData ? (
-    uniqueData.map((stockSymbol, index) => {
-      return (
-        <>
-          <div key={index}>
-            <div>
-              {stockSymbol.s} - {stockSymbol.p}
-            </div>
-          </div>
-        </>
-      );
-    })
-  ) : (
-    <p>hello</p>
-  );
-
-  const socket = new WebSocket(
-    "wss://ws.finnhub.io?token=c8vhqk2ad3icdhue9vd0"
-  );
-
-  // Connection opened -> Subscribe
-  const throttled1 = throttle(function (event) {
-    socket.send(
-      JSON.stringify({ type: "subscribe", symbol: "BINANCE:BTCUSDT" })
-    );
-    socket.send(
-      JSON.stringify({ type: "subscribe", symbol: "BINANCE:ETHUSDT" })
-    );
-  });
-
-  const throttled2 = throttle(function (event) {
-    let stockObject = JSON.parse(event.data);
-    const unique = stockObject ? findUnique(stockObject.data) : [];
-    handleSetUnique(unique);
-  }, 10);
-
-  // open socket for data
-  socket.addEventListener("open", throttled1);
-
-  // listen for messages
-  socket.addEventListener("message", throttled2);
-
-  // Unsubscribe
-  const unsubscribe = function (symbol) {
-    socket.send(JSON.stringify({ type: "unsubscribe", symbol: symbol }));
+  const handleErr = (err) => {
+    console.log(err);
   };
 
   return (
     <>
-      <div>{stockSymbols}</div>
+      <div className="home-container">
+        {loading &&
+          marketNews.map((news, index) => (
+            <Card
+              key={index}
+              style={{
+                margin: "5px",
+                width: "325px",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                textDecoration: "none",
+                justifyContent: "center",
+                height: "500px",
+              }}
+            >
+              <CardMedia
+                className="home-img"
+                component="img"
+                image={news.image}
+                alt={news.source}
+              />
+              <CardActionArea>
+                <CardContent>
+                  <a
+                    href={news.url}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <Typography gutterBottom variant="h5" component="div">
+                      {news.headline}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {news.summary}
+                    </Typography>
+                  </a>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
+      </div>
     </>
   );
 };

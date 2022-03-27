@@ -1,3 +1,19 @@
 .css-o69gx8-MuiCardMedia-root {
     width: 60px !important;
 }
+
+.home-container {
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-img {
+    height: 250px;
+    width: 300px !important;
+    margin: auto;
+}
