@@ -9,6 +9,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import Box from "@mui/material/Box";
+import ImageList from "@mui/material/ImageList";
+import { ImageListItem } from "@mui/material";
 
 const Home = () => {
   const [marketNews, setMarketNews] = useState([]);
@@ -21,7 +24,7 @@ const Home = () => {
   const fetchMarketNews = () => {
     axios
       .get(
-        "https://finnhub.io/api/v1/news?category=forex&minId=10&token=c8vqeaiad3icdhueemgg"
+        "https://finnhub.io/api/v1/news?category=general&minId=10&token=c8vqeaiad3icdhueemgg"
       )
       .then(handleAPIResponse)
       .catch(handleErr);
@@ -51,7 +54,8 @@ const Home = () => {
                 flexWrap: "wrap",
                 textDecoration: "none",
                 justifyContent: "center",
-                height: "455px",
+                borderWidth: "thin",
+                borderStyle: "outset",
               }}
             >
               <CardMedia
@@ -67,10 +71,10 @@ const Home = () => {
                     href={news.url}
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                       {news.headline}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body3" color="text.secondary">
                       {news.summary}
                     </Typography>
                   </a>
