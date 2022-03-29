@@ -3,11 +3,12 @@ import axios from "axios";
 
 // Material UI
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const CompanyNews = () => {
   const [headlineNews, setHeadlineNews] = useState([]);
@@ -21,7 +22,7 @@ const CompanyNews = () => {
   const getNews = () => {
     axios
       .get(
-        "https://finnhub.io/api/v1/press-releases?symbol=AAPL&from=2022-03-01&to=2022-03-26&token=c8vqeaiad3icdhueemgg"
+        "https://finnhub.io/api/v1/press-releases?symbol=AAPL&from=2022-03-01&to=2022-04-30&token=c8vqeaiad3icdhueemgg"
       )
       .then(handleNewsResponse)
       .catch(handleErr);
@@ -31,50 +32,62 @@ const CompanyNews = () => {
     setHeadlineNews(response.data.majorDevelopment);
     setLoading(true);
   };
+  console.log(headlineNews);
 
   const handleErr = (err) => {
     console.log(err);
   };
 
+  const StyledPaper = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    maxWidth: 400,
+    color: theme.palette.text.primary,
+  }));
+
   return (
     <>
-      {loading &&
-        headlineNews.map((news, index) => (
-          <Card
-            sx={{ maxWidth: "70vw" }}
-            key={index}
-            style={{
-              margin: "20px",
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              textDecoration: "none",
-              alignItems: "center",
-              justifyContent: "center",
+      <div className="Cnews-container">
+        <Box
+          sx={{
+            flexGrow: 1,
+            overflow: "hidden",
+            px: 3,
+            justifyContent: "left",
+            magrin: "auto",
+            display: "flex",
+          }}
+        >
+          <StyledPaper
+            sx={{
+              my: 1,
+              mx: "auto",
+              p: 2,
             }}
           >
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {news.headline}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {news.description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                <a
-                  href={news.url}
-                  style={{ textDecoration: "none", color: "black" }}
+            {loading &&
+              headlineNews.map((news, index) => (
+                <Grid
+                  key={index}
+                  container
+                  wrap="nowrap"
+                  spacing={2}
+                  style={{ margin: "2px" }}
                 >
-                  Click Here for the story
-                </a>
-              </Button>
-            </CardActions>
-          </Card>
-        ))}
+                  <Grid item xs>
+                    <a
+                      href={news.url}
+                      style={{ textDecoration: "none", color: "#008ae6" }}
+                    >
+                      <Typography>{news.headline}</Typography>
+                    </a>
+                  </Grid>
+                </Grid>
+              ))}
+          </StyledPaper>
+        </Box>
+      </div>
     </>
   );
 };
