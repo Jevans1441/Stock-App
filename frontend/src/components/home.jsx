@@ -51,7 +51,7 @@ const Home = () => {
                 flexWrap: "wrap",
                 textDecoration: "none",
                 justifyContent: "center",
-                height: "500px",
+                height: "455px",
               }}
             >
               <CardMedia
@@ -59,6 +59,7 @@ const Home = () => {
                 component="img"
                 image={news.image}
                 alt={news.source}
+                style={{ height: "200px" }}
               />
               <CardActionArea>
                 <CardContent>

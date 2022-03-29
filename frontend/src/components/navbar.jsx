@@ -11,6 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
+import CardMedia from "@mui/material/CardMedia";
+import bearBull from "../images/bearbull.svg";
+import SearchBar from "./search";
 
 const pages = ["Home", "Stocks", "Crypto"];
 const settings = ["Profile", "Logout"];
@@ -31,6 +35,7 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
     <AppBar
       style={{ background: "#777", padding: "8px", width: "100%" }}
@@ -44,7 +49,14 @@ const NavBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            Stock-Tracker
+            <Link to={`/`} style={{ textDecoration: "none", color: "#A7A9AC" }}>
+              <CardMedia
+                style={{ height: "auto", width: "auto", margin: "auto" }}
+                component="img"
+                src={bearBull}
+                title="logo"
+              />
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -77,7 +89,17 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: "#A7A9AC",
+                      }}
+                      to={`/${page}`}
+                    >
+                      {page}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -88,7 +110,14 @@ const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            Stock-Tracker
+            <Link to={`/`} style={{ textDecoration: "none", color: "#A7A9AC" }}>
+              <CardMedia
+                style={{ height: "auto", width: "auto", margin: "auto" }}
+                component="img"
+                src={bearBull}
+                title="logo"
+              />
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -97,11 +126,16 @@ const NavBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                <Link
+                  style={{ textDecoration: "none", color: "#A7A9AC" }}
+                  to={`/${page}`}
+                >
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>
-
+          <SearchBar />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -126,7 +160,17 @@ const NavBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    <Link
+                      to={`/${setting}`}
+                      style={{
+                        textDecoration: "none",
+                        color: "#A7A9AC",
+                      }}
+                    >
+                      {setting}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

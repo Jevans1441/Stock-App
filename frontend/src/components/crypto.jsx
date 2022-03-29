@@ -94,6 +94,8 @@ const Crypto = () => {
                     All Time High - ${crypto.ath}
                     <br />
                     High over 24h - ${crypto.high_24h}
+                    <br />
+                    Low over 24h - ${crypto.low_24h}
                   </Typography>
                 </CardContent>
               </CardActionArea>
