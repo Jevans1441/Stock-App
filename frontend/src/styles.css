@@ -56,4 +56,11 @@
     text-decoration: underline;
 }
 
+.stockDiv_1 {
+    display: flex;
+    align-items: center;
+}
 
+.stockPageLogo {
+    width: 20vw;
+}

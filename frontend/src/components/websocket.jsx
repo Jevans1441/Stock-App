@@ -52,7 +52,7 @@ const WebSocketData = () => {
       );
     })
   ) : (
-    <p>hello</p>
+    <p>404/Error\404</p>
   );
 
   const socket = new WebSocket(

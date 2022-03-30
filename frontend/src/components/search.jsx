@@ -2,8 +2,16 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { Reducer } from "redux";
 
 const SearchBar = () => {
+  const [inputText, setInputText] = React.useState("");
+
+  let inputHandler = (e) => {
+    let userInput = e.target.value;
+    setInputText(userInput);
+  };
+
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
