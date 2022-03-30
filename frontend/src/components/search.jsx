@@ -3,14 +3,11 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { Reducer } from "redux";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const SearchBar = () => {
-  const [inputText, setInputText] = React.useState("");
-
-  let inputHandler = (e) => {
-    let userInput = e.target.value;
-    setInputText(userInput);
-  };
+  const search = useSelector((state) => state.search);
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -56,7 +53,11 @@ const SearchBar = () => {
 
   return (
     <>
-      <Search>
+      <Search
+        value={search}
+        onChange={(e) => search(e.target.value)}
+        // onCancelSearch={() => cancelSearch()}
+      >
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>

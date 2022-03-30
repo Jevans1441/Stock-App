@@ -17,7 +17,7 @@ import bearBull from "../images/bearbull.svg";
 import SearchBar from "./search";
 
 const pages = ["Home", "Stocks", "Crypto"];
-const settings = ["Profile", "Logout"];
+const settings = ["Profile", "Logout", "Login", "Register"];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

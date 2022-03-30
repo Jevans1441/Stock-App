@@ -24,7 +24,7 @@ const Stock = () => {
   const getData = () => {
     axios
       .get(
-        "https://finnhub.io/api/v1/stock/profile2?symbol=AAPL&token=c8vqeaiad3icdhueemgg"
+        "https://finnhub.io/api/v1/stock/profile2?symbol=gME&token=c8vqeaiad3icdhueemgg"
       )
       .then(handleAPIResponse)
       .catch(handleErr);
