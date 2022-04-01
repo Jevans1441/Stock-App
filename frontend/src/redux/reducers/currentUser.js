@@ -1,4 +1,4 @@
-import { CurrentUser } from "./actions";
+import { CurrentUser } from "../actions";
 
 const CURRENT_USER = {
   token: "",
@@ -6,7 +6,6 @@ const CURRENT_USER = {
 };
 
 function authUserReducer(state = CURRENT_USER, action) {
-  console.log(action.CURRENT_USER);
   return state;
 }
 

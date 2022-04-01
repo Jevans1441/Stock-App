@@ -3,7 +3,7 @@ import { Footer, Header, Main } from "./sectioning";
 import { useEffect } from "react";
 import "./styles.css";
 import { useDispatch } from "react-redux";
-import { setInitialState } from "./redux/reducers/actions";
+import { setInitialState } from "./redux/actions";
 
 function App() {
   const dispatch = useDispatch();
@@ -11,6 +11,7 @@ function App() {
   useEffect(() => {
     dispatch(setInitialState());
   }, []);
+
   return (
     <>
       <div className="App">

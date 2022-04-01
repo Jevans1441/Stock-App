@@ -2,12 +2,22 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Reducer } from "redux";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { doSearch } from "../redux/actions";
+import { IconButton } from "@mui/material";
 
 const SearchBar = () => {
-  const search = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+  const searchInput = useSelector((state) => state.search);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(searchInput);
+  };
+
+  const handleChange = (e) => {
+    dispatch(doSearch(e.target.value));
+  };
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -52,21 +62,19 @@ const SearchBar = () => {
   }));
 
   return (
-    <>
-      <Search
-        value={search}
-        onChange={(e) => search(e.target.value)}
-        // onCancelSearch={() => cancelSearch()}
-      >
+    <form onSubmit={handleSubmit}>
+      <Search>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
+          onChange={handleChange}
+          value={searchInput}
         />
       </Search>
-    </>
+    </form>
   );
 };
 
