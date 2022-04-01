@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 // Material UI
 import * as React from "react";
@@ -13,6 +14,7 @@ import Typography from "@mui/material/Typography";
 const CompanyNews = () => {
   const [headlineNews, setHeadlineNews] = useState([]);
   const [loading, setLoading] = useState(false);
+  const getInput = useSelector((state) => state.search);
 
   useEffect(() => {
     getNews();
@@ -22,7 +24,7 @@ const CompanyNews = () => {
   const getNews = () => {
     axios
       .get(
-        "https://finnhub.io/api/v1/press-releases?symbol=AAPL&from=2022-03-01&to=2022-04-30&token=c8vqeaiad3icdhueemgg"
+        `https://finnhub.io/api/v1/press-releases?symbol=${getInput}&from=2022-03-01&to=2022-04-30&token=c8vqeaiad3icdhueemgg`
       )
       .then(handleNewsResponse)
       .catch(handleErr);

@@ -12,9 +12,11 @@ import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import { ImageListItem } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const Stock = () => {
   const [data, setData] = useState([]);
+  const getInput = useSelector((state) => state.search);
 
   useEffect(() => {
     getData();
@@ -24,7 +26,7 @@ const Stock = () => {
   const getData = () => {
     axios
       .get(
-        "https://finnhub.io/api/v1/stock/profile2?symbol=gME&token=c8vqeaiad3icdhueemgg"
+        `https://finnhub.io/api/v1/stock/profile2?symbol=${getInput}&token=c8vqeaiad3icdhueemgg`
       )
       .then(handleAPIResponse)
       .catch(handleErr);

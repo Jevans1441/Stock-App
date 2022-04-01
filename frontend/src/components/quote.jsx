@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 // MUI
 import * as React from "react";
@@ -10,6 +11,7 @@ import Box from "@mui/material/Box";
 
 const Quote = () => {
   const [quote, setQuote] = useState([]);
+  const getInput = useSelector((state) => state.search.toUpperCase());
 
   useEffect(() => {
     getQuote();
@@ -19,7 +21,7 @@ const Quote = () => {
   const getQuote = () => {
     axios
       .get(
-        "https://finnhub.io/api/v1/quote?symbol=AAPL&token=c8vqeaiad3icdhueemgg"
+        `https://finnhub.io/api/v1/quote?symbol=${getInput}&token=c8vqeaiad3icdhueemgg`
       )
       .then(handleAPIResponse)
       .catch(handleErr);

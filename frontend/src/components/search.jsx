@@ -4,7 +4,6 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { doSearch } from "../redux/actions";
-import { IconButton } from "@mui/material";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -50,7 +49,6 @@ const SearchBar = () => {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("sm")]: {
         width: "12ch",
@@ -72,6 +70,7 @@ const SearchBar = () => {
           inputProps={{ "aria-label": "search" }}
           onChange={handleChange}
           value={searchInput}
+          autoFocus={true}
         />
       </Search>
     </form>

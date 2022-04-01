@@ -1,6 +1,9 @@
-import { SET_INITIAL_STATE } from "./actionTypes";
-import { CURRENT_USER } from "./actionTypes";
-import { SET_SEARCH_VALUE } from "./actionTypes";
+import axios from "axios";
+import {
+  SET_INITIAL_STATE,
+  SET_SEARCH_VALUE,
+  CURRENT_USER,
+} from "./actionTypes";
 
 export const setInitialState = () => {
   return {
