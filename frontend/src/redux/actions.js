@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   SET_INITIAL_STATE,
   SET_SEARCH_VALUE,
