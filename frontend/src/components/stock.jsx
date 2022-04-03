@@ -11,11 +11,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { doSearch } from "../redux/actions";
 
 const Stock = () => {
   const [data, setData] = useState([]);
   const getInput = useSelector((state) => state.search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getData();

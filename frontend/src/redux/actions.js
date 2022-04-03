@@ -17,6 +17,7 @@ export const CurrentUser = () => {
 };
 
 export const doSearch = (value) => {
+  console.log('hello', value)
   return {
     type: SET_SEARCH_VALUE,
     payload: value,

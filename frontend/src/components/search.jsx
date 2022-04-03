@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState} from "react";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,13 +11,17 @@ const SearchBar = () => {
   const searchInput = useSelector((state) => state.search);
   let navigate = useNavigate();
 
+  const [searchQuery, setSearchQuery] = useState('')
+
   const handleSubmit = (e) => {
-    // dispatch(doSearch(e.target.value));
+    e.preventDefault();
+    dispatch(doSearch(searchQuery));
+    setSearchQuery('')
+    navigate("/stocks");
   };
 
   const handleChange = (e) => {
-    dispatch(doSearch(e.target.value));
-    navigate("/stocks");
+    setSearchQuery(e.target.value);
   };
 
   const Search = styled("div")(({ theme }) => ({
@@ -62,7 +66,7 @@ const SearchBar = () => {
   }));
 
   return (
-    <form onChange={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Search>
         <SearchIconWrapper>
           <SearchIcon />
@@ -71,7 +75,7 @@ const SearchBar = () => {
           placeholder="Search Ticker"
           inputProps={{ "aria-label": "search" }}
           onChange={handleChange}
-          value={searchInput}
+          value={searchQuery}
           autoFocus={true}
           className="searchID"
         />
