@@ -11,7 +11,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
 
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { CURRENT_USER } from "../redux/actionTypes";
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const [authToken, setAuthToken] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -25,10 +32,25 @@ const Login = () => {
       },
     };
 
+    let token = "";
+
     axios
-      .post("http://127.0.0.1:6060/api/v1/login/access-token", search, config)
+      .post("http://127.0.0.1/api/v1/login/access-token", search, config)
       .then(function (response) {
         console.log(response);
+        token = response.data.access_token;
+      });
+    axios
+      .get("http://127.0.0.1/api/v1/users/me", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(function (response) {
+        dispatch({
+          type: "CURRENT_USER",
+          payload: [{ token: token, username: response.data.username }],
+        });
       });
   };
 

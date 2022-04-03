@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stock app"
-version = "0.1.0"
+version = "0.1.2"
 description = "Personal stock tracking app"
 authors = ["Josh Evans <88986229+Jevans1441@users.noreply.github.com>"]
 

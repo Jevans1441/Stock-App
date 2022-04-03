@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   stock:
-    image: jevans1441/stock-ticker:0.1.1
+    image: jevans1441/stock-ticker:0.1.2
     env_file:
       - .env
     build: 
@@ -9,4 +9,4 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-false}
     ports: 
-      - 6060:80    
+      - 80:80    

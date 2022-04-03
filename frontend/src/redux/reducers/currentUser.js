@@ -2,7 +2,7 @@ import { CurrentUser } from "../actions";
 
 const CURRENT_USER = {
   token: "",
-  user: [],
+  username: "",
 };
 
 function authUserReducer(state = CURRENT_USER, action) {
