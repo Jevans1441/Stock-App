@@ -6,6 +6,7 @@ import Stock from "../components/stock";
 import Register from "../components/register";
 import NotFound from "../components/404";
 import { Header } from "../sectioning";
+import Logout from "../components/logout";
 
 const landing = () => {
   return (
@@ -14,6 +15,7 @@ const landing = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
 
       <Routes>

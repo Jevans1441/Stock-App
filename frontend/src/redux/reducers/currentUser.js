@@ -1,11 +1,14 @@
-import { CurrentUser } from "../actions";
+import { CURRENT_USER } from "../actionTypes";
 
-const CURRENT_USER = {
+const CurrentUser = {
   token: "",
   username: "",
 };
 
-function authUserReducer(state = CURRENT_USER, action) {
+function authUserReducer(state = CurrentUser, action) {
+    if (action.type === CURRENT_USER) {
+    return action.payload;
+  }
   return state;
 }
 

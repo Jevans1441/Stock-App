@@ -17,7 +17,7 @@ import bearBull from "../images/bearbull.svg";
 import SearchBar from "./search";
 
 const pages = ["News", "Crypto"];
-const settings = ["Logout"];
+const settings = ["logout"];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

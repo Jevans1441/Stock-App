@@ -2,6 +2,7 @@ import {
   SET_INITIAL_STATE,
   SET_SEARCH_VALUE,
   CURRENT_USER,
+  SET_AUTH
 } from "./actionTypes";
 
 export const setInitialState = () => {
@@ -22,3 +23,4 @@ export const doSearch = (value) => {
     payload: value,
   };
 };
+

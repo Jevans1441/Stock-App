@@ -11,12 +11,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
 
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CURRENT_USER } from "../redux/actionTypes";
 
 const Login = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,11 +52,12 @@ const Login = () => {
       .get("http://127.0.0.1/api/v1/users/me", config2)
       .then(function (response) {
         dispatch({
-          type: "CURRENT_USER",
+          type: CURRENT_USER,
           payload: [{ token: authToken, username: response.data.username }],
         });
       })
       });
+    navigate('/news')
   };
 
   return (
