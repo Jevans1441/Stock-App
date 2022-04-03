@@ -11,7 +11,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import { ImageListItem } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const Stock = () => {
@@ -58,17 +57,15 @@ const Stock = () => {
             },
           }}
         >
-          <List>
-            <div className="h-news">Headline News</div>
-          </List>
           <Box sx={{ overflow: "auto" }}>
             <List>
+              <div className="h-news">Headline News</div>
               <CompanyNews />
             </List>
           </Box>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Toolbar>
+          <Toolbar style={{ padding: "12px" }}>
             {" "}
             <div className="stockDiv_1">
               <img
@@ -82,11 +79,11 @@ const Stock = () => {
           <Typography paragraph>
             <Quote />
           </Typography>
-          <Typography paragraph>
+          {/* <Typography paragraph>
             Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
             ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
             elementum integer enim neque volutpat ac tincidunt. Ornare
-          </Typography>
+          </Typography> */}
         </Box>
       </Box>
     </>

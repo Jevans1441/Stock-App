@@ -45,6 +45,16 @@ const Quote = () => {
     color: theme.palette.text.secondary,
   }));
 
+  const curentPriceColor = () => {
+    let curPrice = document.getElementsByClassName("currentPrice");
+
+    if (quote.c > quote.o) {
+      curPrice.style.color = "green";
+    } else if (quote.c < quote.o) {
+      curPrice.style.color = "red";
+    }
+  };
+
   return (
     <>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -52,7 +62,14 @@ const Quote = () => {
           <Item>Current Price</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>{quote.c}</Item>
+          <Item
+            style={{
+              color:
+                quote.c === "green" ? quote.c > quote.o : quote.c === "red",
+            }}
+          >
+            {quote.c}
+          </Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Highest Price of Today</Item>
