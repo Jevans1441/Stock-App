@@ -4,17 +4,26 @@ import Home from "../components/home";
 import Login from "../components/login";
 import Stock from "../components/stock";
 import Register from "../components/register";
+import NotFound from "../components/404";
+import { Header } from "../sectioning";
 
 const landing = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Navigate to="/" replace />} />
-        <Route path="/stocks" element={<Stock />} />
-        <Route path="/crypto" element={<Crypto />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/register" element={<Register />} />
+      </Routes>
+
+      <Routes>
+        <Route>
+          <Route path="/news" element={<Home />} />
+        </Route>
+
+        <Route path={"/stocks/:name"} element={<Stock />} />
+        <Route path="/crypto" element={<Crypto />} />
+        <Route path="/404" element={<NotFound />} />
       </Routes>
     </>
   );

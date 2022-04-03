@@ -9,6 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { WrapText } from "@mui/icons-material";
+import { Header } from "../sectioning";
 
 const Crypto = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -59,6 +60,7 @@ const Crypto = () => {
 
   return (
     <>
+      <Header />
       <div className="crypto-container">
         {loading &&
           cryptoData.map((crypto, index) => (

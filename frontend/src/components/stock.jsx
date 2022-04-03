@@ -12,6 +12,7 @@ import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
+import { Header } from "../sectioning";
 
 const Stock = () => {
   const [data, setData] = useState([]);
@@ -44,6 +45,7 @@ const Stock = () => {
 
   return (
     <>
+      <Header />
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Drawer

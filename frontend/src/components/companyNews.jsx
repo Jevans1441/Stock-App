@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import NotFound from "./404";
 
 // Material UI
 import * as React from "react";

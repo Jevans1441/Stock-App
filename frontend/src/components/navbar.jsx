@@ -16,8 +16,8 @@ import CardMedia from "@mui/material/CardMedia";
 import bearBull from "../images/bearbull.svg";
 import SearchBar from "./search";
 
-const pages = ["Home", "Crypto"];
-const settings = ["Profile", "Logout", "Login", "Register"];
+const pages = ["News", "Crypto"];
+const settings = ["Logout"];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -49,7 +49,10 @@ const NavBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <Link to={`/`} style={{ textDecoration: "none", color: "#A7A9AC" }}>
+            <Link
+              to={`/news`}
+              style={{ textDecoration: "none", color: "#A7A9AC" }}
+            >
               <CardMedia
                 style={{ height: "auto", width: "auto", margin: "auto" }}
                 component="img"
@@ -110,7 +113,10 @@ const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            <Link to={`/`} style={{ textDecoration: "none", color: "#A7A9AC" }}>
+            <Link
+              to={`/news`}
+              style={{ textDecoration: "none", color: "#A7A9AC" }}
+            >
               <CardMedia
                 style={{ height: "auto", width: "80px", margin: "auto" }}
                 component="img"

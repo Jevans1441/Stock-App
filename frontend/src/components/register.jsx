@@ -45,7 +45,7 @@ const Register = () => {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 1 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>

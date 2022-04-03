@@ -16,7 +16,7 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     dispatch(doSearch(searchQuery));
     setSearchQuery("");
-    navigate("/stocks");
+    navigate(`/stocks/${searchQuery}`);
   };
 
   const handleChange = (e) => {
