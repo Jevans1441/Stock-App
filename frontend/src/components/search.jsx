@@ -5,19 +5,22 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { doSearch } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const SearchBar = () => {
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const searchInput = useSelector((state) => state.search);
-  let navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSubmit = (e) => {
-    // dispatch(doSearch(e.target.value));
+    dispatch(doSearch(searchQuery));
+    setSearchQuery("");
+    navigate("/stocks");
   };
 
   const handleChange = (e) => {
-    dispatch(doSearch(e.target.value));
-    navigate("/stocks");
+    setSearchQuery(e.target.value);
   };
 
   const Search = styled("div")(({ theme }) => ({
@@ -62,7 +65,7 @@ const SearchBar = () => {
   }));
 
   return (
-    <form onChange={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Search>
         <SearchIconWrapper>
           <SearchIcon />
@@ -71,7 +74,7 @@ const SearchBar = () => {
           placeholder="Search Ticker"
           inputProps={{ "aria-label": "search" }}
           onChange={handleChange}
-          value={searchInput}
+          value={searchQuery}
           autoFocus={true}
           className="searchID"
         />
