@@ -17,6 +17,7 @@ const SearchBar = () => {
 
   const handleChange = (e) => {
     dispatch(doSearch(e.target.value));
+    navigate("/stocks");
   };
 
   const Search = styled("div")(({ theme }) => ({
@@ -69,9 +70,7 @@ const SearchBar = () => {
         <StyledInputBase
           placeholder="Search Ticker"
           inputProps={{ "aria-label": "search" }}
-          onChange={() => {
-            handleChange && navigate("/stocks");
-          }}
+          onChange={handleChange}
           value={searchInput}
           autoFocus={true}
           className="searchID"
