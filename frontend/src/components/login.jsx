@@ -17,7 +17,6 @@ import { CURRENT_USER } from "../redux/actionTypes";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const [authToken, setAuthToken] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,25 +31,29 @@ const Login = () => {
       },
     };
 
-    let token = "";
+    let authToken = "";
 
     axios
       .post("http://127.0.0.1/api/v1/login/access-token", search, config)
       .then(function (response) {
         console.log(response);
-        token = response.data.access_token;
-      });
+        authToken = response.data.access_token;
+        console.log(authToken)
+    
+        const config2 = {
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      },
+    }
+
     axios
-      .get("http://127.0.0.1/api/v1/users/me", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
+      .get("http://127.0.0.1/api/v1/users/me", config2)
       .then(function (response) {
         dispatch({
           type: "CURRENT_USER",
-          payload: [{ token: token, username: response.data.username }],
+          payload: [{ token: authToken, username: response.data.username }],
         });
+      })
       });
   };
 
