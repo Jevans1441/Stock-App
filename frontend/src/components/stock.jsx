@@ -72,6 +72,7 @@ const Stock = () => {
                 src={data.logo}
                 alt="stock_logo"
                 className="stockPageLogo"
+                style={{ height: "30%", width: "30%" }}
               ></img>
               <h1>{data.name}</h1>
             </div>

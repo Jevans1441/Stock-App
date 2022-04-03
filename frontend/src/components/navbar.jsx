@@ -112,7 +112,7 @@ const NavBar = () => {
           >
             <Link to={`/`} style={{ textDecoration: "none", color: "#A7A9AC" }}>
               <CardMedia
-                style={{ height: "auto", width: "auto", margin: "auto" }}
+                style={{ height: "auto", width: "80px", margin: "auto" }}
                 component="img"
                 src={bearBull}
                 title="logo"
@@ -139,7 +139,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar>ST</Avatar>
               </IconButton>
             </Tooltip>
             <Menu
