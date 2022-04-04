@@ -11,7 +11,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+
 const Register = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -32,9 +36,11 @@ const Register = () => {
     console.log(inputData)
 
     axios
-      .post("http://127.0.0.1/api/v1/users/", inputData , config)
+      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/", inputData , config)
       .then(function (response) {
         console.log(response);
+        navigate('/news')
+
       })
       .catch((error) => {
         console.log(error.response.data)
@@ -91,7 +97,7 @@ const Register = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>

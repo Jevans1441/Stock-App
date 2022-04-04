@@ -36,7 +36,7 @@ const Login = () => {
     let authToken = "";
 
     axios
-      .post("http://127.0.0.1/api/v1/login/access-token", search, config)
+      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/login/access-token", search, config)
       .then(function (response) {
         console.log(response);
         authToken = response.data.access_token;
@@ -49,7 +49,7 @@ const Login = () => {
     }
 
     axios
-      .get("http://127.0.0.1/api/v1/users/me", config2)
+      .get("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/me", config2)
       .then(function (response) {
         dispatch({
           type: CURRENT_USER,
