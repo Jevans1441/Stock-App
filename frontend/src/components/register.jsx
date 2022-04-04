@@ -10,6 +10,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
+import { CardMedia } from "@mui/material";
+import bearbull from '../images/bvb.jpeg'
 
 import { useNavigate } from "react-router-dom";
 
@@ -43,8 +45,16 @@ const Register = () => {
 
   return (
     <>
-      <Container component="main" maxWidth="xs">
+      
+
+      <Container component="main" maxWidth="s">
         <CssBaseline />
+          <CardMedia
+            style={{ height: '30vh' , margin: "auto", marginTop: '15px' }}
+            component="img"
+            src={bearbull}
+            title="logo"
+          />
         <Box
           sx={{
             marginTop: 8,
@@ -53,9 +63,8 @@ const Register = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <h1>STOCK TICKER</h1>
+
           <Typography component="h1" variant="h5">
             Register
           </Typography>

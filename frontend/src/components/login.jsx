@@ -10,6 +10,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
+import bearbull from '../images/bvb.jpeg'
+import { CardMedia } from "@mui/material";
+
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -63,8 +66,14 @@ const Login = () => {
 
   return (
     <>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" >
         <CssBaseline />
+          <CardMedia
+            style={{ height: '32vh' , margin: "auto", marginTop: '15px' }}
+            component="img"
+            src={bearbull}
+            title="logo"
+          />
         <Box
           sx={{
             marginTop: 8,
@@ -73,6 +82,8 @@ const Login = () => {
             alignItems: "center",
           }}
         >
+          <h1>STOCK TICKER</h1>
+
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
