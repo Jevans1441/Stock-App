@@ -16,11 +16,29 @@ const Register = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
+    console.log(data)
+
+    const inputData = {
+      username: data.get('username'),
+      password: data.get('password')
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    console.log(inputData)
+
     axios
-      .post("http://127.0.0.1:6060/api/v1/login/access-token", data)
+      .post("http://127.0.0.1/api/v1/users/", inputData , config)
       .then(function (response) {
         console.log(response);
-      });
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+      })
   };
 
   return (
@@ -43,46 +61,47 @@ const Register = () => {
           </Typography>
           <Box
             component="form"
-            noValidate
             onSubmit={handleSubmit}
+            noValidate
             sx={{ mt: 1 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="Username"
-                  name="Username"
-                  required
-                  fullWidth
-                  id="userName"
-                  label="Username"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-            </Grid>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="Username"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="Password"
+            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container>
+              <Grid item xs>
+                {/* <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link> */}
+              </Grid>
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  {"Already have an account? Login"}
                 </Link>
               </Grid>
             </Grid>

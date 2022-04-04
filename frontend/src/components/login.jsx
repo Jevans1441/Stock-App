@@ -55,9 +55,12 @@ const Login = () => {
           type: CURRENT_USER,
           payload: [{ token: authToken, username: response.data.username }],
         });
+        navigate('/news')
       })
-      });
-    navigate('/news')
+      })
+      .catch(function () {
+        alert("Invalid Login")
+      })
   };
 
   return (

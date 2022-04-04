@@ -14,7 +14,6 @@ async def create_user(
     *,
     db: AsyncSession = Depends(deps.get_db),
     user_in: schemas.UserCreate,
-    current_user: models.User = Depends(deps.validate_current_user)
 ) -> Any:
     """
     Create a new user in the database.
@@ -48,6 +47,7 @@ async def delete_user(
         )
     user_deleted = await crud.user.remove(db, id=user.id)
     return user_deleted
+
 
 @router.get("/users/me", response_model=schemas.User)
 async def read_user_self(
