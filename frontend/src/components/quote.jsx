@@ -30,7 +30,6 @@ const Quote = () => {
   const handleAPIResponse = (response) => {
     setQuote(response.data);
   };
-  console.log(quote);
 
   const handleErr = (err) => {
     console.log(err);

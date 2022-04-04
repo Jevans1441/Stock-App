@@ -9,4 +9,4 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-false}
     ports: 
-      - 80:80    
+      - 80:80   

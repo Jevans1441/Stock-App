@@ -36,11 +36,9 @@ const Login = () => {
     let authToken = "";
 
     axios
-      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/login/access-token", search, config)
+      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com:8080/api/v1/login/access-token", search, config)
       .then(function (response) {
-        console.log(response);
         authToken = response.data.access_token;
-        console.log(authToken)
     
         const config2 = {
       headers: {
@@ -49,14 +47,14 @@ const Login = () => {
     }
 
     axios
-      .get("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/me", config2)
+      .get("http://ec2-54-210-203-232.compute-1.amazonaws.com:8080/api/v1/users/me", config2)
       .then(function (response) {
         dispatch({
           type: CURRENT_USER,
           payload: [{ token: authToken, username: response.data.username }],
         });
         navigate('/news')
-      })
+        })
       })
       .catch(function () {
         alert("Invalid Login")

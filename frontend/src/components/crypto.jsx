@@ -56,7 +56,6 @@ const Crypto = () => {
       });
   };
 
-  console.log(cryptoData);
 
   return (
     <>
@@ -77,10 +76,9 @@ const Crypto = () => {
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="60vh"
                   image={crypto.image}
                   alt={crypto.name}
-                  width="auto"
+                  width="100px"
                 />
                 <Typography gutterBottom variant="h5" component="div">
                   {crypto.name}

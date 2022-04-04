@@ -32,7 +32,6 @@ const Home = () => {
     setMarketNews(response.data);
     setLoading(true);
   };
-  // console.log(marketNews);
 
   const handleErr = (err) => {
     console.log(err);

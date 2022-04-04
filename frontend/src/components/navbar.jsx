@@ -49,17 +49,17 @@ const NavBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <Link
+            {/* <Link
               to={`/news`}
               style={{ textDecoration: "none", color: "#A7A9AC" }}
             >
               <CardMedia
-                style={{ height: "auto", width: "auto", margin: "auto" }}
+                style={{ height: "100px", width: "300px", margin: "auto" }}
                 component="img"
                 src={bearBull}
                 title="logo"
               />
-            </Link>
+            </Link> */}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -113,7 +113,7 @@ const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            <Link
+            {/* <Link
               to={`/news`}
               style={{ textDecoration: "none", color: "#A7A9AC" }}
             >
@@ -123,7 +123,7 @@ const NavBar = () => {
                 src={bearBull}
                 title="logo"
               />
-            </Link>
+            </Link> */}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

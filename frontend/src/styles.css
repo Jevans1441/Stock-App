@@ -3,6 +3,14 @@ html, body {
     padding: 0;
 }
 
+header {
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+}
+
 .css-o69gx8-MuiCardMedia-root {
     width: 60px !important;
 }
@@ -41,6 +49,14 @@ html, body {
     margin-top: 9.5vh;
 }
 
+.css-22u6wc .MuiDrawer-paper {
+    margin-top: 10vh !important;
+}
+
+.css-1l8j5k8 {
+    margin-top: 10vh !important;
+}
+
 .css-4z0ohv {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -68,4 +84,21 @@ html, body {
 
 .stockPageLogo {
     width: 20vw;
+}
+
+@media (max-width: 425px) {
+    header {
+        width: 116%    }
+}
+
+@media (max-width: 375px) {
+    header {
+        width: 130%;
+    }
+}
+
+@media (max-width: 325px) {
+    header {
+        width: 155%;
+    }
 }

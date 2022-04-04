@@ -35,7 +35,6 @@ const Stock = () => {
   const handleAPIResponse = (response) => {
     setData(response.data);
   };
-  console.log(data);
 
   const handleErr = (err) => {
     console.log(err);
