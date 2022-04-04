@@ -16,3 +16,8 @@ Front End:
   - FastAPI       https://fastapi.tiangolo.com/
   - Alembic       https://alembic.sqlalchemy.org/en/latest/
   - Asyncpg       https://pypi.org/project/asyncpg/
+
+
+Live website: ec2-18-207-125-22.compute-1.amazonaws.com
+
+Backend live website: ec2-54-210-203-232.compute-1.amazonaws.com
