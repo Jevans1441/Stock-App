@@ -34,11 +34,11 @@ const Register = () => {
 
 
     axios
-      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com:8080/api/v1/users/", inputData , config)
+      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/", inputData , config)
       .then(function (response) {
-        // console.log(response);
-      })
+        console.log(response);
         navigate('/news')
+      })
   };
 
   return (
