@@ -47,10 +47,10 @@ const Register = () => {
     <>
       
 
-      <Container component="main" maxWidth="s">
+      <Container component="main">
         <CssBaseline />
           <CardMedia
-            style={{ height: '30vh' , margin: "auto", marginTop: '15px' }}
+            style={{ height: '32vh' , margin: "auto", marginTop: '15px' }}
             component="img"
             src={bearbull}
             title="logo"
