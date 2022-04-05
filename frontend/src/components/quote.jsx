@@ -67,38 +67,38 @@ const Quote = () => {
                 quote.c === "green" ? quote.c > quote.o : quote.c === "red",
             }}
           >
-            {quote.c}
+            ${quote.c}
           </Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Highest Price of Today</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item className="quoteGreen">{quote.h}</Item>
+          <Item className="quoteGreen">${quote.h}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Lowest Price of Today</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item className="quoteRed">{quote.l}</Item>
+          <Item className="quoteRed">${quote.l}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Percent Change </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>{quote.dp}</Item>
+          <Item>%{quote.dp}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Open Price of the Day</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>{quote.o}</Item>
+          <Item>${quote.o}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Previous Close</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>{quote.pc}</Item>
+          <Item>${quote.pc}</Item>
         </Grid>
       </Grid>
     </>

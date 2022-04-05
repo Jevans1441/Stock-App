@@ -102,3 +102,8 @@ header {
         width: 155%;
     }
 }
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: black;
+}

@@ -39,7 +39,7 @@ const Register = () => {
       .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/", inputData , config)
       .then(function (response) {
         console.log(response);
-        navigate('/news')
+        navigate('/login')
       })
   };
 

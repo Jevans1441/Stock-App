@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { WrapText } from "@mui/icons-material";
 import { Header } from "../sectioning";
+import { createUnarySpacing } from "@mui/system";
 
 const Crypto = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -71,16 +72,18 @@ const Crypto = () => {
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "wrap",
+                height: '400px',
               }}
             >
               <CardActionArea>
+                <a href={'https://www.coingecko.com/en/coins/' + crypto.id}>
                 <CardMedia
                   component="img"
                   image={crypto.image}
                   alt={crypto.name}
                   width="100px"
                 />
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" style={{textDecoration: 'none'}}>
                   {crypto.name}
                 </Typography>
                 <CardContent>
@@ -97,7 +100,8 @@ const Crypto = () => {
                     <br />
                     Low over 24h - ${crypto.low_24h}
                   </Typography>
-                </CardContent>
+                  </CardContent>
+                  </a>
               </CardActionArea>
             </Card>
           ))}
