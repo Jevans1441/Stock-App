@@ -1,6 +1,5 @@
 Stock Ticker APP
-
-Application allows you to login, save tickers to your profile to keep up with daily changes and news related to those stocks.  
+ 
 
 Front End: 
   - JavaScript    https://www.javascript.com/
