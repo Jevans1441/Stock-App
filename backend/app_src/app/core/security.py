@@ -9,8 +9,7 @@ from app.core.config import settings
 ALGORITHM = "HS256"
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-# Creates a cryptContext(hashes backend uses shaw256 to encrpt data), 'bcrypt is
-# a hashing library
+# Creates a cryptContext(hashes backend uses saw256 to encrpt data),
 #  deprecated, will deprecate bcrypt if it is outdated, and throw error
 
 
@@ -37,6 +36,7 @@ def create_access_token(
     encodes expire token, nbf = not before current time.
     encoded_jwt encripts application with a secret 
     key that only the application only knows.
+
     """
 
     if token_expire:

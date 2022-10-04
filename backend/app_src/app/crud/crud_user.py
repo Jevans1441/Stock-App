@@ -46,7 +46,8 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         self, db: AsyncSession, *, username: str, password: str
     ) -> Optional[User]:
         """
-        Authenticate username and password that was provided. Look in database that user provided to
+        Authenticate username and password that was provided
+        Look in database that user provided to
         to check if it is correct.
         """
         user = await self.get_by_username(db, username=username)
