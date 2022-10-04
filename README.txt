@@ -1,6 +1,5 @@
 Stock Ticker APP
-
-Application allows you to login, save tickers to your profile to keep up with daily changes and news related to those stocks.  
+ 
 
 Front End: 
   - JavaScript    https://www.javascript.com/
@@ -11,13 +10,12 @@ Front End:
   
  Back End:
   - Python        https://www.python.org/
-  - SQLAlchemy    https://www.sqlalchemy.org/
-  - Uvicorn       https://www.uvicorn.org/
   - FastAPI       https://fastapi.tiangolo.com/
-  - Alembic       https://alembic.sqlalchemy.org/en/latest/
-  - Asyncpg       https://pypi.org/project/asyncpg/
+  - Docker        https://www.docker.com/
+
+This app is built with 2 ec2 containers, both front end and back end are hosted on seperate containers each with their own rds cluster. 
 
 
 Live website: ec2-18-207-125-22.compute-1.amazonaws.com
 
-Backend live website: ec2-54-210-203-232.compute-1.amazonaws.com
+
