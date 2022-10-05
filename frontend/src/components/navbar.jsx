@@ -96,7 +96,7 @@ const NavBar = () => {
                     <Link
                       style={{
                         textDecoration: "none",
-                        color: "#A7A9AC",
+                        color: "#ffffff",
                       }}
                       to={`/${page}`}
                     >
@@ -133,7 +133,7 @@ const NavBar = () => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 <Link
-                  style={{ textDecoration: "none", color: "#A7A9AC" }}
+                  style={{ textDecoration: "none", color: "#ffffff" }}
                   to={`/${page}`}
                 >
                   {page}

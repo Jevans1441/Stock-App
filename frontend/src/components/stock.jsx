@@ -17,6 +17,7 @@ import { Header } from "../sectioning";
 const Stock = () => {
   const [data, setData] = useState([]);
   const getInput = useSelector((state) => state.search);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getData();
@@ -37,7 +38,7 @@ const Stock = () => {
   };
 
   const handleErr = (err) => {
-    console.log(err);
+    setError(err.message);
   };
 
   const drawerWidth = 240;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -7,7 +7,6 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 
 const Quote = () => {
   const [quote, setQuote] = useState([]);
@@ -42,17 +41,19 @@ const Quote = () => {
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    fontSize: "1.2rem",
+    fontWeight: "600",
   }));
 
-  const curentPriceColor = () => {
-    let curPrice = document.getElementsByClassName("currentPrice");
+  const direction = useMemo(
+    () => (quote.l < quote.c ? "up" : quote.l > quote.c ? "down" : ""),
+    [quote.l, quote.c]
+  );
 
-    if (quote.c > quote.o) {
-      curPrice.style.color = "green";
-    } else if (quote.c < quote.o) {
-      curPrice.style.color = "red";
-    }
-  };
+  const percentDirection = useMemo(
+    () => (quote.o < quote.c ? "up" : quote.o > quote.c ? "down" : ""),
+    [quote.o, quote.c]
+  );
 
   return (
     <>
@@ -61,44 +62,39 @@ const Quote = () => {
           <Item>Current Price</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item
-            style={{
-              color:
-                quote.c === "green" ? quote.c > quote.o : quote.c === "red",
-            }}
-          >
-            ${quote.c}
-          </Item>
+          <Item className={[direction]}>${parseFloat(quote.c).toFixed(2)}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Highest Price of Today</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item className="quoteGreen">${quote.h}</Item>
+          <Item>${parseFloat(quote.h).toFixed(2)}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Lowest Price of Today</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item className="quoteRed">${quote.l}</Item>
+          <Item className="down">${parseFloat(quote.l).toFixed(2)}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Percent Change </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>%{quote.dp}</Item>
+          <Item className={[percentDirection]}>
+            {parseFloat(quote.dp).toFixed(2)}%
+          </Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Open Price of the Day</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>${quote.o}</Item>
+          <Item>${parseFloat(quote.o).toFixed(2)}</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>Previous Close</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>${quote.pc}</Item>
+          <Item>${parseFloat(quote.pc).toFixed(2)}</Item>
         </Grid>
       </Grid>
     </>

@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { WrapText } from "@mui/icons-material";
 import { Header } from "../sectioning";
-import { createUnarySpacing } from "@mui/system";
 
 const Crypto = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -21,14 +20,6 @@ const Crypto = () => {
   }, []);
 
   // Get Crypto Data
-
-  const handleAPIResponse = (response) => {
-    setCryptoData(response.data);
-  };
-
-  const handleErr = (err) => {
-    console.log(err);
-  };
 
   const getData = {
     method: "GET",
