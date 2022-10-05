@@ -32,7 +32,7 @@ const Crypto = () => {
 
   const getData = {
     method: "GET",
-    url: "https://coingecko.p.rapidapi.com/coins/markets",
+    url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
     params: {
       vs_currency: "usd",
       page: "1",
@@ -40,8 +40,8 @@ const Crypto = () => {
       order: "market_cap_desc",
     },
     headers: {
+      "X-RapidAPI-Key": "6850b2c1c2mshc4e152fccdcc96fp134a54jsn6cbe77daba5e",
       "X-RapidAPI-Host": "coingecko.p.rapidapi.com",
-      "X-RapidAPI-Key": "78d17b0347mshe42b871eb5d0227p172799jsn5216578a5e88",
     },
   };
 
@@ -57,7 +57,6 @@ const Crypto = () => {
       });
   };
 
-
   return (
     <>
       <Header />
@@ -72,36 +71,41 @@ const Crypto = () => {
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "wrap",
-                height: '400px',
+                height: "400px",
               }}
             >
               <CardActionArea>
-                <a href={'https://www.coingecko.com/en/coins/' + crypto.id}>
-                <CardMedia
-                  component="img"
-                  image={crypto.image}
-                  alt={crypto.name}
-                  width="100px"
-                />
-                <Typography gutterBottom variant="h5" component="div" style={{textDecoration: 'none'}}>
-                  {crypto.name}
-                </Typography>
-                <CardContent>
+                <a href={"https://www.coingecko.com/en/coins/" + crypto.id}>
+                  <CardMedia
+                    component="img"
+                    image={crypto.image}
+                    alt={crypto.name}
+                    width="100px"
+                  />
                   <Typography
-                    component="span"
-                    variant="body2"
-                    color="text.secondary"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    style={{ textDecoration: "none" }}
                   >
-                    Current Price - ${crypto.current_price}
-                    <br />
-                    All Time High - ${crypto.ath}
-                    <br />
-                    High over 24h - ${crypto.high_24h}
-                    <br />
-                    Low over 24h - ${crypto.low_24h}
+                    {crypto.name}
                   </Typography>
+                  <CardContent>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      color="text.secondary"
+                    >
+                      Current Price - ${crypto.current_price}
+                      <br />
+                      All Time High - ${crypto.ath}
+                      <br />
+                      High over 24h - ${crypto.high_24h}
+                      <br />
+                      Low over 24h - ${crypto.low_24h}
+                    </Typography>
                   </CardContent>
-                  </a>
+                </a>
               </CardActionArea>
             </Card>
           ))}

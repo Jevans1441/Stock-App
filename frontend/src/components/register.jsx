@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
 import { CardMedia } from "@mui/material";
-import bearbull from '../images/bvb.jpeg'
+import bearbull from "../images/bvb.jpeg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -22,11 +22,10 @@ const Register = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-
     const inputData = {
-      username: data.get('username'),
-      password: data.get('password')
-    }
+      username: data.get("username"),
+      password: data.get("password"),
+    };
 
     const config = {
       headers: {
@@ -34,27 +33,34 @@ const Register = () => {
       },
     };
 
+    //   axios
+    //     .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/", inputData , config)
+    //     .then(function (response) {
+    //       console.log(response);
+    //       navigate('/login')
+    //     })
+    // };
 
+    // localhost
     axios
-      .post("http://ec2-54-210-203-232.compute-1.amazonaws.com/api/v1/users/", inputData , config)
+      .post("http://127.0.0.1/api/v1/users/", inputData, config)
       .then(function (response) {
         console.log(response);
-        navigate('/login')
-      })
+        navigate("/login");
+      });
+    // localhost end
   };
 
   return (
     <>
-      
-
       <Container component="main">
         <CssBaseline />
-          <CardMedia
-            style={{ height: '32vh' , margin: "auto", marginTop: '15px' }}
-            component="img"
-            src={bearbull}
-            title="logo"
-          />
+        <CardMedia
+          style={{ height: "32vh", margin: "auto", marginTop: "15px" }}
+          component="img"
+          src={bearbull}
+          title="logo"
+        />
         <Box
           sx={{
             marginTop: 8,
