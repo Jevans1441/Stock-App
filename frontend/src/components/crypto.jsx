@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 
 // material-ui
@@ -48,6 +48,16 @@ const Crypto = () => {
       });
   };
 
+  const direction = useMemo(
+    () =>
+      crypto.low_24h < crypto.current_price
+        ? "up"
+        : crypto.low_24h > crypto.current_price
+        ? "down"
+        : "",
+    [crypto.low_24h, crypto.current_price]
+  );
+
   return (
     <>
       <Header />
@@ -62,7 +72,8 @@ const Crypto = () => {
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "wrap",
-                height: "400px",
+                height: "28rem",
+                alignContent: "flex-end",
               }}
             >
               <CardActionArea>
@@ -72,12 +83,18 @@ const Crypto = () => {
                     image={crypto.image}
                     alt={crypto.name}
                     width="100px"
+                    style={{ marginBottom: "5px" }}
                   />
                   <Typography
                     gutterBottom
                     variant="h5"
                     component="div"
-                    style={{ textDecoration: "none" }}
+                    display="flex"
+                    style={{
+                      textDecoration: "none",
+                      margin: "5px",
+                      justifyContent: "center",
+                    }}
                   >
                     {crypto.name}
                   </Typography>
@@ -86,14 +103,17 @@ const Crypto = () => {
                       component="span"
                       variant="body2"
                       color="text.secondary"
+                      display={"flex"}
+                      style={{ justifyContent: "center" }}
                     >
-                      Current Price - ${crypto.current_price}
+                      Current Price - $
+                      {parseFloat(crypto.current_price).toFixed(2)}
                       <br />
-                      All Time High - ${crypto.ath}
+                      All Time High - ${parseFloat(crypto.ath).toFixed(2)}
                       <br />
-                      High over 24h - ${crypto.high_24h}
+                      High Over 24h - ${parseFloat(crypto.high_24h).toFixed(2)}
                       <br />
-                      Low over 24h - ${crypto.low_24h}
+                      Low Over 24h - ${parseFloat(crypto.low_24h).toFixed(2)}
                     </Typography>
                   </CardContent>
                 </a>

@@ -47,13 +47,14 @@ const Home = () => {
               key={index}
               style={{
                 margin: "5px",
-                width: "325px",
+                width: "20rem",
                 flexDirection: "row",
                 flexWrap: "wrap",
                 textDecoration: "none",
                 justifyContent: "center",
                 borderWidth: "thin",
                 borderStyle: "outset",
+                height: "26rem",
               }}
             >
               <CardMedia
